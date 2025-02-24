@@ -1,0 +1,6 @@
+"0","library(ggplot2)"
+"0","ggplot(long_region_summary, aes(x = date, y = count, color = region)) +"
+"0","  geom_line() +"
+"0","  facet_wrap(~metric, scales = ""free_y"") + scale_x_date(date_labels = ""%B"") +"
+"0","  labs(title = ""Regions Specific COVID-19 Cases and Deaths"", x = ""Date"", y = ""Daily Cumulative Count"", color = ""region"", caption = ""Source: NY Times "") +"
+"0","  theme_minimal()"

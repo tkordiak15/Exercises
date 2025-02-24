@@ -1,0 +1,1 @@
+"0","data <- read.csv (""https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties-recent.csv"")"

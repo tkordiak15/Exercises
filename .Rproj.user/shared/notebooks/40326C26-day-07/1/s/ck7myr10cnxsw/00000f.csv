@@ -1,0 +1,8 @@
+"0","daily_cases <- covid %>% group_by(date) %>% summarize(total_cases = sum(cases, na.rm = TRUE))"
+"0","usa_plot <- ggplot(daily_cases, aes (x = date, y = total_cases)) + "
+"0","  geom_col(fill = ""steelblue"") + "
+"0","  labs(title = ""Daily Total COVID-19 Cases in the United States"", x = ""Date"", y = ""Number of Cases"", "
+"0","       caption = ""Source: NY Times COVID-19 Data"") +"
+"0","  coord_cartesian(ylim =c(100000000, 104000000)) +"
+"0","  theme_light()"
+"0","print(usa_plot)"

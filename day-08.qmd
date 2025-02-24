@@ -1,0 +1,53 @@
+---
+title: "day-08"
+format: html
+---
+# Tayler Kordiak, 02/23/2025
+# This is my 8th ESS 330 daily activity where we weill be learning pivots and joins useing the "recent" covid data
+
+#1
+```{r}
+library(tidyverse)
+library(dplyr)
+url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties-recent.csv'
+covid = read_csv(url)
+
+```
+
+```{r}
+print = state.abb
+```
+
+```{r}
+df = data.frame(region = state.region, abbreviation = state.abb, state = state.name) 
+joined_df <- merge(covid, df, by.x = "state", by.y = "state", all.x = TRUE)
+
+region_summary <- joined_df %>%
+  group_by(region, date) %>%
+  summarise(cases = sum(cases - lag(cases, default = first(cases)), na.rm = TRUE),
+    deaths = sum(deaths - lag(deaths, default = first(deaths)), na.rm = TRUE),
+    cumulative_cases = sum(cases, na.rm = TRUE),
+    cumulative_deaths = sum(deaths, na.rm = TRUE))
+```
+
+```{r}
+library(tidyr)
+long_region_summary <- region_summary %>%
+  pivot_longer(cols = c(cases,deaths), 
+               names_to = "metric", values_to = "count")
+```
+
+```{r}
+library(ggplot2)
+ggplot(long_region_summary, aes(x = date, y = count, color = region)) +
+  geom_line() +
+  facet_wrap(~metric, scales = "free_y") + scale_x_date(date_labels = "%B") +
+  labs(title = "Regions Specific COVID-19 Cases and Deaths", x = "Date", y = "Daily Cumulative Count", color = "region", caption = "Source: NY Times ") +
+  theme_minimal()
+```
+
+```{r}
+ggsave("img/daily_08.png", width = 10, height = 6, dpi = 300)
+```
+
+

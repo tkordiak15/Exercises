@@ -1,0 +1,13 @@
+"0","library(tidyverse)"
+"0","library(dplyr)"
+"0","url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties-recent.csv'"
+"0","covid = read_csv(url)"
+"2","[1mRows: [22m[34m97701[39m [1mColumns: [22m[34m6[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m──────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (3): county, state, fips
+[32mdbl[39m  (2): cases, deaths
+[34mdate[39m (1): date"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
